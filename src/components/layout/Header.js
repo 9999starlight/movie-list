@@ -9,9 +9,9 @@ function Header() {
                     <li>
                         <Link to="/">Search</Link>
                     </li>
-                    <li>
+{/*                     <li>
                         <Link to="/movies_list">My List</Link>
-                    </li>
+                    </li> */}
                 </ul>
             </nav>  
         </header>

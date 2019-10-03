@@ -1,6 +1,7 @@
 import React from 'react';
 import RenderResults from './RenderResults';
 import SearchInput from './SearchInput';
+import MoviesList from './MoviesList'
 import Loader from './../layout/Loader';
 // import PropTypes from 'prop-types'
 import '../../App.css';
@@ -41,6 +42,7 @@ class SearchContainer extends React.Component {
             <SearchInput getMovies={this.getMovies} />
             {(this.state.loading) ? <Loader /> : null}
             {this.state.dataResponse ? <RenderResults movieSearchResult={this.state.movieSearchResult} searchValue={this.state.searchValue} /> : <div>Movie not found!</div>}
+            <MoviesList />
             </div>
         )
     }

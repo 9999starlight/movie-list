@@ -4,10 +4,14 @@ import '../../App.css';
 import Loader from './../layout/Loader';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { db } from '../../Firebase.js'
 class MovieDetails extends React.Component {
     state = {
         singleMovieDetails: [],
-        loading: false
+        loading: false,
+/*         listMovie: {
+
+        } */
     } 
     showLoader() {
         this.setState({ loading: true })
@@ -41,10 +45,30 @@ class MovieDetails extends React.Component {
               })
     }
     
+    // addMovie to Firebase movies collection
+     addMovieToList = (e) => {
+         e.preventDefault();
+        db.collection('movies').add({
+            comment: '',
+            favorite: false,
+            genre: this.state.singleMovieDetails.Genre,
+            imdbLink: `https://www.imdb.com/title/${this.props.match.params.id}`,
+            imdbRate:this.state.singleMovieDetails.imdbRating,
+            movieId: this.state.singleMovieDetails.imdbID,
+            title: this.state.singleMovieDetails.Title,
+            type: this.state.singleMovieDetails.Type,
+            year: this.state.singleMovieDetails.Year 
+    }).then(() => {
+      alert(`Added to your list`);
+    }).catch((err) => {
+      console.log(err.message);
+    });
+    }
+ 
     render() {
         console.log(this.state.singleMovieDetails)
         return (
-      <div className="p1">
+      <div className="movieDeatils container">
       {(this.state.loading) ? <Loader /> : null}
         <h1>Movie Details</h1>
         <div className = "film">
@@ -57,7 +81,7 @@ class MovieDetails extends React.Component {
       <h3>Type: {this.state.singleMovieDetails.Type}</h3>
       <h3>Genre: {this.state.singleMovieDetails.Genre}</h3>
       <h3>IMDB Rating: {this.state.singleMovieDetails.imdbRating}</h3>
-      <button className = "addMovieBtn">
+ <button className = "addMovieBtn" onClick= {this.addMovieToList}>
       Add to watchlist</button>
       <Link to={"/"}>Back to search</Link>
       </div>
