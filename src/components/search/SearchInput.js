@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import '../../App.css';
+import './SearchInput.css'
 class SearchInput extends React.Component {
     state = {
-       searchValue: ''
+        searchValue: ''
     }
     onChange = (e) => this.setState({ searchValue: e.target.value })
     onSubmit = (e) => {
@@ -12,22 +12,23 @@ class SearchInput extends React.Component {
     }
     render() {
         return (
-            <div className = "searchBox p1" >
+            <div className="searchBox flex flexCenter p1" >
                 <div className="search" >
-                    <form onSubmit = {this.onSubmit}>
-                    <input type="text" id="search"
-                        value={this.state.searchValue}
-                        onChange = {this.onChange}
-                        autoFocus
+                    <h1 className="mb1">Search for movies or tv shows</h1>
+                    <h3 className="mb1">Add movies to watchlist and mark your favorites</h3>
+                    <form onSubmit={this.onSubmit} className="flexCenter">
+                        <input type="text" id="search" className="radius mb1 searchArea shadow"
+                            value={this.state.searchValue}
+                            onChange={this.onChange}
+                            autoFocus
                             placeholder="Enter title or keyword" />
                         <input type="submit"
                             value="Search"
-                            className="btn"
+                            className="btn btnSearch"
                         />
-                        </form>
-                <p> Start typing to search </p>
+                    </form>
                 </div >
-                </div>
+            </div>
         )
     }
 }

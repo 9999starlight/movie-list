@@ -1,20 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import '../../App.css';
-import { Link } from 'react-router-dom';
+import MovieDetails from './MovieDetails'
+import './SingleMovieBox.css'
+// import { Link } from 'react-router-dom';
+
 class SingleMovieBox extends React.Component {
+    state = {
+        on: false
+    }
+
+    toggle = () => {
+        this.setState({
+            on: !this.state.on
+        })
+    }
 
     render() {
         return (
-            <div className="movieBox p1">
-                <h3>{this.props.movie.Title}</h3>
-                <p>{this.props.movie.Year}</p>
-                <Link to={'/movie_details/' + this.props.movie.imdbID}>
-            More Details
-          </Link>
-            </div>
+            <div className="movieBoxWrapper">
+            <div className="movieBox p1 grid">
+                <img src={this.props.movie.Poster} alt="film poster" className="block smallImage" />
+                <div className="movieInfo flex">
+                <p className="movieTitle">{this.props.movie.Title}</p>
+                <p className="movieYear">Year: {this.props.movie.Year}</p>
+                <p className="movieType">Type: {this.props.movie.Type}</p>
+                </div>
+                    <div onClick={this.toggle} className="btnDetailsWrapper"><span>&#9660;</span></div>
+                    </div>
+                {this.state.on && <MovieDetails {...this.props.movie.imdbID}/>}
+                {/* <Link to={'/movie_details/' + this.props.movie.imdbID}>
+                    More Details
+          </Link> */}
+                
+                </div>
         )
-  }
+    }
 }
 // prop types
 SingleMovieBox.propTypes = {

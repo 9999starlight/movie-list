@@ -1,13 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   list-style-type: none;
+  border: none;
+}
+
+.App {
+  font-family: 'Source Sans Pro', Arial, sans-serif;
 }
 
 a {
   text-decoration: none;
   color: #fff;
+  cursor: pointer;
 }
 
 /* utillity classes */
@@ -19,6 +27,14 @@ a {
 .flexCenter {
   justify-content: center;
   align-items: center;
+}
+
+.grid {
+  display: grid;
+}
+
+.block {
+  display: block;
 }
 
 .p1 {
@@ -33,39 +49,32 @@ a {
   min-height: 100vh;
 }
 
-/* header */
-header {
-  max-height: 10vh;
-  justify-content: space-between;
-  box-shadow: 0 -15px 30px -5px #c986d7;
-  background: linear-gradient(90deg, rgba(70, 68, 68, 0) 0%, rgba(255, 255, 255, 0.048) 25%, rgba(255, 255, 255, 0.068) 75%, rgba(255, 255, 255, 0) 100%);
+.mb1 {
+  margin-bottom: 1rem;
 }
 
-/* spinner */
-
-.loader {
-  width: 80px;
-  height: 80px;
-  margin: 3em 0;
-  border: 2px solid #41f24a;
-  border-top: 2px ridge #1b4e1d;
-  border-radius: 100%;
-  animation: spin 1s infinite linear;
+.btn {
+  display: block;
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 7px 25px;
 }
 
-/* SingleMovieBox */
-.movieBox {
-  border: 2px inset white;
-  box-shadow: 2px 2px 2px white;
+.btn:hover {
+  box-shadow: 2px 2px 6px rgba(150, 151, 152, 0.47);
+  transition: 0.5s;
+}
+
+.radius {
+  border-radius: 8px;
+}
+
+.shadow {
+  box-shadow: 3px 3px 6px rgba(150, 151, 152, 0.47);
+}
+
+li {
+  color: #fff;
 }
 
 /* keyframes */
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}

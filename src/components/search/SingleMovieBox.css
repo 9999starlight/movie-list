@@ -1,0 +1,98 @@
+.SingleMovieBox {
+  width: 100%;
+}
+
+.movieBox {
+  background: radial-gradient(circle at top left, rgba(66, 65, 63, 0.833), rgba(26, 23, 20, 0.675));
+  ;
+  border: 2px inset white;
+  box-shadow: 2px 2px 2px white;
+}
+
+.btnDetailsWrapper {
+  height: 50px;
+  padding: 1rem;
+  cursor: pointer;
+  animation: rotate 5s infinite;
+  grid-area: btnDetails;
+}
+
+.btnDetailsWrapper span {
+  color: rgba(238, 255, 0, 0.87);
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+
+}
+
+.movieBox {
+  grid-template-columns: 1.5fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr 50px;
+  grid-template-areas:
+    'smallImage movieInfo'
+    'smallImage movieInfo'
+    'smallImage movieInfo'
+    'btnDetails btnDetails'
+  ;
+}
+
+.smallImage {
+  height: 100px;
+  max-width: 100%;
+  grid-area: smallImage;
+}
+
+.movieInfo {
+  grid-area: movieInfo;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 2px inset #fff;
+  text-align: left;
+}
+
+.movieTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@media(min-width: 600px) {
+  .movieBox {
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 1fr 30px;
+    grid-template-areas:
+      'smallImage movieInfo'
+      'smallImage movieInfo'
+      'btnDetails btnDetails'
+    ;
+    max-height: 200px;
+  }
+
+  .smallImage {
+    height: 120px;
+    grid-area: smallImage;
+    margin: 0 auto;
+  }
+
+  .movieInfo {
+    justify-content: flex-start;
+  }
+
+  .movieTitle {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  .movieYear, .movieType {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+}
