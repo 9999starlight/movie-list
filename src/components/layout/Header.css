@@ -1,18 +1,22 @@
-@import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');
 
 header {
   max-height: 10vh;
   justify-content: space-between;
+  align-items: center;
   box-shadow: 0 -15px 30px -5px #c986d7;
   background: linear-gradient(90deg, rgba(70, 68, 68, 0) 0%, rgba(255, 255, 255, 0.048) 25%, rgba(255, 255, 255, 0.068) 75%, rgba(255, 255, 255, 0) 100%);
   animation: shine 20s infinite;
 }
 
 header h4 {
-  background: linear-gradient(330deg, #2fe03eb9 20%, #52e0e0ab 50%, #9952e09f 75%, #304d145d 100%);
+  font-family: 'Monoton', cursive;
+  background: radial-gradient(circle at 50% 120%, #d481f6, #cb76ef 10%, #9936d6 80%, #b12dda 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: brightness(150%);
+  text-shadow: #17171a 1px 1px 0;
 }
 
 nav {

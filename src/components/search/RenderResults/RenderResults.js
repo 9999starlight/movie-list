@@ -1,5 +1,5 @@
 import React from 'react';
-import SingleMovieBox from './SingleMovieBox';
+import SingleMovieBox from '../SingleMovieBox/SingleMovieBox';
 import PropTypes from 'prop-types'
 import './RenderResults.css';
 class RenderResults extends React.Component {

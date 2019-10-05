@@ -1,11 +1,11 @@
 import React from 'react';
 // import PropTypes from 'prop-types'
-import '../../App.css';
-import Loader from './../layout/Loader';
+//import '../../App.css';
+import Loader from '../../layout/Loader';
 import axios from 'axios'
 //import { Link } from 'react-router-dom';
 //import { HashLink } from 'react-router-hash-link';
-import { db } from '../../Firebase.js'
+import { db } from '../../../Firebase.js'
 import './MovieDetails.css'
 class MovieDetails extends React.Component {
     state = {
@@ -59,7 +59,8 @@ class MovieDetails extends React.Component {
                         movieId: this.state.singleMovieDetails.imdbID,
                         title: this.state.singleMovieDetails.Title,
                         type: this.state.singleMovieDetails.Type,
-                        year: this.state.singleMovieDetails.Year
+                        year: this.state.singleMovieDetails.Year,
+                        image: this.state.singleMovieDetails.Poster
                     })
                     alert(`Added to your list`);
                 }
