@@ -8,27 +8,38 @@ class MoviesList extends React.Component {
         fetchedDatabase: []
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.fetchedDatabase !== this.state.fetchedDatabase)
-            this.setState({ fetchedDatabase: this.state.fetchedDatabase })
-    }
-
     componentDidMount() {
         this.fetchMoviesCollection()
     }
 
     fetchMoviesCollection = () => {
         const moviesArr = []
-        db.collection('movies').onSnapshot((snapshot) => {
-            snapshot.docs.forEach(doc => {
-                const film = doc.data()
-                film.dbId = doc.id
-                moviesArr.push(film)
+        db.collection('movies').get()
+            .then((snapshot) => {
+                snapshot.docs.forEach(doc => {
+                    const film = doc.data()
+                    film.dbId = doc.id
+                    moviesArr.push(film)
+                })
+                this.setState({
+                    fetchedDatabase: moviesArr
+                })
+            }, err => console.log(err.message));
+    }
+
+    getUpdatedData = () => {
+        const moviesArr = []
+        db.collection('movies').get()
+            .then((data) => {
+                data.docs.forEach(doc => {
+                    const film = doc.data()
+                    film.dbId = doc.id
+                    moviesArr.push(film)
+                })
+                this.setState({
+                    fetchedDatabase: moviesArr
+                })
             })
-            this.setState({
-                fetchedDatabase: moviesArr
-            })
-        }, err => console.log(err.message));
     }
 
     sortByAbc = () => {
@@ -59,36 +70,21 @@ class MoviesList extends React.Component {
         }, err => console.log(err.message));
     }
 
-    /*     deleteItem = (e) => {
-            let id = e.target.parentElement.parentElement.getAttribute('id');
-            db.collection('movies').doc(id).delete();
-            alert(`List item removed!`)
-            console.log(this.state.fetchedDatabase)
-            this.setState({
-                fetchedDatabase: []
-            })
-            // moram dapozovem ponovo funkciju da bi renderovala novu listu, ne znam šta je
-            this.fetchMoviesCollection()
-        } */
-
-    // firebase doc
     deleteItem = (e) => {
         let id = e.target.parentElement.parentElement.getAttribute('id');
         db.collection("movies").doc(id).delete()
-            .then(function () {
-                alert("Item successfully deleted!");
-            }).catch(function (error) {
-                console.error("Error removing document: ", error);
-            });
+            .then(() => {
+                this.getUpdatedData()
+            })
     }
 
     addToFavorites = (e) => {
         let id = e.target.parentElement.parentElement.getAttribute('id');
-        if (e.target.innerText === 'Add to favorites') {
-            db.collection('movies').doc(id).update({
-                favorite: true
-            })
-        }
+        db.collection('movies').doc(id).update({
+            favorite: true
+        }).then(() => {
+            this.getUpdatedData()
+        })
     }
 
     render() {
