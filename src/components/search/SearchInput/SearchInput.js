@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types'
+import React from 'react'
 import './SearchInput.css'
+
 class SearchInput extends React.Component {
     state = {
         searchValue: ''
@@ -31,10 +31,6 @@ class SearchInput extends React.Component {
             </div>
         )
     }
-}
-// prop types
-SearchInput.propTypes = {
-    getMovies: PropTypes.func.isRequired
 }
 
 export default SearchInput;

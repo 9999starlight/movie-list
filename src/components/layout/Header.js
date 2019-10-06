@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-//import { HashLink } from 'react-router-hash-link';
-//import { NavHashLink } from 'react-router-hash-link';
 import './Header.css'
 function Header() {
     return (
@@ -13,11 +11,7 @@ function Header() {
                         <Link to="/">Search</Link>
                     </li>
                     <li>
-                    <Link to="/movies_list/">My List</Link>
-{/*                         <NavHashLink
-                            to="/#mylist"
-                            scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'end' })}
-                        >My List</NavHashLink > */}
+                        <Link to="/movies_list/">My List</Link>
                     </li>
                 </ul>
             </nav>

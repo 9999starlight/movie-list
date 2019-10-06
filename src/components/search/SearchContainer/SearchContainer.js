@@ -1,12 +1,8 @@
-import React from 'react';
-import RenderResults from '../RenderResults/RenderResults';
-import SearchInput from '../SearchInput/SearchInput';
-import Loader from '../../layout/Loader';
-// import PropTypes from 'prop-types'
+import React from 'react'
+import RenderResults from '../RenderResults/RenderResults'
+import SearchInput from '../SearchInput/SearchInput'
+import Loader from '../../layout/Loader'
 import axios from 'axios'
-
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 class SearchContainer extends React.Component {
   state = {
@@ -37,7 +33,7 @@ class SearchContainer extends React.Component {
         console.log(err.message);
       })
   }
-  
+
   render() {
     return (
       <div className="p1" id="startSearch">
@@ -48,7 +44,5 @@ class SearchContainer extends React.Component {
     )
   }
 }
-/* SearchContainer.propTypes = {
-    movieSearchResult: PropTypes.array.isRequired
-  } */
+
 export default SearchContainer;

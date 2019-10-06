@@ -19,7 +19,7 @@
   align-items: flex-start;
   width: 100%;
   text-align: left;
-  padding: 0.8rem 0;
+  padding: 0.8rem;
 }
 
 .film {
@@ -48,26 +48,22 @@
   .addMovieBtn {
     margin-top: 1.2rem;
   }
-  
-.singleMovie {
-  display: flex;
-flex-direction: column;
-justify-content: center;
-}
 
-.biggerImage:hover {
-  transform: scale(1.1);
-  transition: 0.5s ease-in-out;
-  filter: sepia(50%);
-}
+  .singleMovie {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .biggerImage:hover {
+    transform: scale(1.1);
+    transition: 0.5s ease-in-out;
+    filter: sepia(50%);
+  }
 }
 
 @media(min-width: 992px) {
-/* .info-poster {
-  justify-content: space-around;
-} */
-
   .biggerImage {
-     height: 250px;
+    height: 250px;
   }
 }

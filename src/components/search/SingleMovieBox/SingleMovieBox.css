@@ -1,5 +1,6 @@
 .SingleMovieBox {
   width: 100%;
+  transition: all 0.4s ease-in-out;
 }
 
 .movieBox {
@@ -11,28 +12,33 @@
 
 .btnDetailsWrapper {
   height: 50px;
-  padding: 1rem;
+  padding: 1rem 0;
   cursor: pointer;
-  animation: rotate 5s infinite;
   grid-area: btnDetails;
+  background: linear-gradient(90deg, #ae96c73f 0%, #7bc7c352 25%, #80addc4f 50%, #a27ec744 75%, #b277a54b 100%);
+  text-shadow: 2px 2px 4px #000;
+  mask-image: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, #fff 25%, #fff 75%, rgba(255, 255, 255, 0) 100%);
+  -webkit-mask-image: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, #fff 25%, #fff 75%, rgba(255, 255, 255, 0) 100%);
 }
 
-.btnDetailsWrapper span {
-  color: rgba(238, 255, 0, 0.87);
+.arrow {
+  color: rgba(214, 212, 206, 0.966);
   font-size: 1.2rem;
-  margin-top: 0.5rem;
-
+  margin-left: 0.5rem;
+  animation: rotate 5s infinite;
 }
 
 .movieBox {
-  grid-template-columns: 1.5fr 2fr;
-  grid-template-rows: 1fr 1fr 1fr 50px;
+  grid-template-columns: 3fr 5fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 30px;
   grid-template-areas:
+    'smallImage movieInfo'
     'smallImage movieInfo'
     'smallImage movieInfo'
     'smallImage movieInfo'
     'btnDetails btnDetails'
   ;
+  min-height: 200px;
 }
 
 .smallImage {
@@ -91,8 +97,13 @@
     font-weight: 700;
   }
 
-  .movieYear, .movieType {
+  .movieYear,
+  .movieType {
     font-size: 1.3rem;
     font-weight: 500;
+  }
+
+  .btnDetailsWrapper:hover {
+    filter: brightness(50%);
   }
 }

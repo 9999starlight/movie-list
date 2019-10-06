@@ -22,14 +22,15 @@
 
 .btnSearch {
   margin: 0 auto;
-  color: #fff;
-  background: linear-gradient(-180deg, rgb(82, 33, 83) 0%, #884D80 100%);
-}
-
-.btnSearch:hover {
   color: rgb(82, 33, 83);
   background: rgb(218, 214, 214);
   outline: 2px solid rgb(82, 33, 83);
+}
+
+.btnSearch:hover {
+  color: #fff;
+  background: linear-gradient(to bottom, #dfbdfa 5%, #bc80ea 100%);
+  outline: none;
 }
 
 @media(min-width: 500px) {

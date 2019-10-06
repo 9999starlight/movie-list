@@ -1,12 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types'
-//import '../../App.css';
 import Loader from '../../layout/Loader';
 import axios from 'axios'
 //import { Link } from 'react-router-dom';
 //import { HashLink } from 'react-router-hash-link';
 import { db } from '../../../Firebase.js'
 import './MovieDetails.css'
+
 class MovieDetails extends React.Component {
     state = {
         singleMovieDetails: [],
@@ -72,7 +71,7 @@ class MovieDetails extends React.Component {
     render() {
         console.log(this.state.singleMovieDetails)
         return (
-            <div className="detailsContainer container">
+            <div className="detailsContainer radius">
                 {(this.state.loading) ? <Loader /> : null}
                 <div className="film">
                     <div className="info-poster radius">
@@ -106,9 +105,5 @@ class MovieDetails extends React.Component {
         )
     }
 }
-// prop types
-/* MovieDetails.propTypes = {
-    movie: PropTypes.object.isRequired
-} */
 
 export default MovieDetails;

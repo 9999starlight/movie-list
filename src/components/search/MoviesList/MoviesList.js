@@ -1,9 +1,9 @@
 import React from 'react';
 import { db } from './../../../Firebase.js'
 import './MoviesList.css'
-// import PropTypes from './node_modules/prop-types'
 
 class MoviesList extends React.Component {
+
     state = {
         fetchedDatabase: []
     }
@@ -29,33 +29,66 @@ class MoviesList extends React.Component {
                 fetchedDatabase: moviesArr
             })
         }, err => console.log(err.message));
-
     }
 
     sortByAbc = () => {
-        this.state.fetchedDatabase.sort((a, b) => {
-            return a.title.localeCompare(b.title);
-        })
+        const moviesArr = []
+        db.collection('movies').orderBy('title').get().then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+                const film = doc.data()
+                film.dbId = doc.id
+                moviesArr.push(film)
+            })
+            this.setState({
+                fetchedDatabase: moviesArr
+            })
+        }, err => console.log(err.message));
     }
 
+    sortByRating = () => {
+        const moviesArr = []
+        db.collection('movies').orderBy('imdbRate').get().then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+                const film = doc.data()
+                film.dbId = doc.id
+                moviesArr.push(film)
+            })
+            this.setState({
+                fetchedDatabase: moviesArr
+            })
+        }, err => console.log(err.message));
+    }
+
+    /*     deleteItem = (e) => {
+            let id = e.target.parentElement.parentElement.getAttribute('id');
+            db.collection('movies').doc(id).delete();
+            alert(`List item removed!`)
+            console.log(this.state.fetchedDatabase)
+            this.setState({
+                fetchedDatabase: []
+            })
+            // moram dapozovem ponovo funkciju da bi renderovala novu listu, ne znam šta je
+            this.fetchMoviesCollection()
+        } */
+
+    // firebase doc
     deleteItem = (e) => {
         let id = e.target.parentElement.parentElement.getAttribute('id');
-        console.log(id)
-        db.collection('movies').doc(id).delete();
-        alert(`List item removed!`)
-        console.log(this.state.fetchedDatabase)
-        // moram dapozovem ponovo funkciju da bi renderovala novu listu, ne znam šta je
-        //this.fetchMoviesCollection()
+        db.collection("movies").doc(id).delete()
+            .then(function () {
+                alert("Item successfully deleted!");
+            }).catch(function (error) {
+                console.error("Error removing document: ", error);
+            });
     }
 
     addToFavorites = (e) => {
         let id = e.target.parentElement.parentElement.getAttribute('id');
-        db.collection('movies').doc(id).update({
-            favorite: true
-        })
-        e.target.nextElementSibling.style.color = 'yellow'
-        // ovo menja color i dodaje true u bazi. 
-        //treba da se namesti da renderuje žuto ili sivo u zavisnosti od true ili false i dugme da u stvari toggle između true-false 
+        if (e.target.innerText === 'Add to favorites') {
+            db.collection('movies').doc(id).update({
+                favorite: true
+            })
+        }
     }
 
     render() {
@@ -66,8 +99,8 @@ class MoviesList extends React.Component {
                 <h1>My List</h1>
                 <div className="listContainer">
                     <div className="buttons flex flexCenter">
-                        <button onClick={this.sortByAbc} className="listBtn radius">Sort A-Z</button>
-                        <button className="listBtn radius">Sort by IMDB rating</button>
+                        <button onClick={this.sortByAbc} className="btnSort radius">Sort A-Z</button>
+                        <button onClick={this.sortByRating} className="btnSort radius">Sort by IMDB rating</button>
                     </div>
                     <ul className="list flex flexCenter">
                         {dbCollection.map((movie) => (
@@ -78,15 +111,18 @@ class MoviesList extends React.Component {
                                     <h5>Type: {movie.type}</h5>
                                     <h5>Genre: {movie.genre}</h5>
                                 </div>
-                                <img src={movie.image} alt="film poster" className="block listImage" />
+                                <img src={movie.image} alt="film poster" className="block listImage shadow" />
                                 <div className="imdbWrapper flex">
                                     <h4>Imdb Rating: {movie.imdbRate}</h4>
                                     <h5><a href={movie.imdbLink} rel="noopener noreferrer" target="_blank" className="imdbLink">IMDB Link</a></h5>
-                                    <p onClick={this.deleteItem} className="delete">&#9932;</p>
+                                    <p className={movie.favorite ? 'star yellow' : 'star'} >&#10031;</p>
                                 </div>
                                 <div className="favWrapper flex flexCenter">
-                                    <p onClick={this.addToFavorites} className="addFav radius">Add to favorites</p>
-                                    <p className="star">&#10031;</p>
+
+                                    <button onClick={this.addToFavorites} className="btnList addFav radius" disabled={movie.favorite}>Add to favorites</button>
+                                    <button onClick={e =>
+                                        window.confirm("Are you sure you want to delete this item?") &&
+                                        this.deleteItem(e)} className="btnList delete radius">Delete</button>
                                 </div>
                             </li>
                         ))}
@@ -96,7 +132,5 @@ class MoviesList extends React.Component {
         )
     }
 }
-/* MoviesList.propTypes = {
-    movieSearchResult: PropTypes.array.isRequired
-} */
+
 export default MoviesList;
