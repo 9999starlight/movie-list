@@ -56,8 +56,14 @@
 }
 
 .movieTitle {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: 700;
+}
+
+.movieYear,
+.movieType {
+  font-size: 0.7rem;
+  font-weight: 500;
 }
 
 @keyframes rotate {
@@ -67,6 +73,17 @@
 
   to {
     transform: rotateY(360deg);
+  }
+}
+
+@media(min-width: 400px) {
+  .movieTitle {
+    font-size: 1.3rem;
+  }
+
+  .movieYear,
+  .movieType {
+    font-size: 1rem;
   }
 }
 
@@ -90,17 +107,6 @@
 
   .movieInfo {
     justify-content: flex-start;
-  }
-
-  .movieTitle {
-    font-size: 1.6rem;
-    font-weight: 700;
-  }
-
-  .movieYear,
-  .movieType {
-    font-size: 1.3rem;
-    font-weight: 500;
   }
 
   .btnDetailsWrapper:hover {

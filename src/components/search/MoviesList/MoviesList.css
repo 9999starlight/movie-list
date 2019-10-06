@@ -57,8 +57,9 @@ h1 {
     'titlesWrapper titlesWrapper titlesWrapper'
     'imdbWrapper imdbWrapper imdbWrapper'
     'favWrapper favWrapper favWrapper';
-  background: -webkit-linear-gradient(top, rgba(76, 76, 76, 1) 0%, rgba(102, 102, 102, 1) 0%, rgba(102, 102, 102, 1) 0%, rgba(89, 89, 89, 0.97) 12%, rgba(17, 17, 17, 0.86) 54%, rgba(43, 43, 43, 0.8) 76%, rgba(44, 44, 44, 0.79) 82%, rgba(28, 28, 28, 0.76) 91%, rgba(19, 19, 19, 0.74) 100%);
-  background: -moz-linear-gradient(top, rgba(76, 76, 76, 1) 0%, rgba(102, 102, 102, 1) 0%, rgba(102, 102, 102, 1) 0%, rgba(89, 89, 89, 0.97) 12%, rgba(17, 17, 17, 0.86) 54%, rgba(43, 43, 43, 0.8) 76%, rgba(44, 44, 44, 0.79) 82%, rgba(28, 28, 28, 0.76) 91%, rgba(19, 19, 19, 0.74) 100%);
+  background: linear-gradient(to top, rgba(76, 76, 76, 1) 0%, rgba(102, 102, 102, 1) 0%, rgba(102, 102, 102, 1) 0%, rgba(89, 89, 89, 0.97) 12%, rgba(17, 17, 17, 0.86) 54%, rgba(43, 43, 43, 0.8) 76%, rgba(44, 44, 44, 0.79) 82%, rgba(28, 28, 28, 0.76) 91%, rgba(19, 19, 19, 0.74) 100%);
+  background: -webkit-linear-gradient(to top, rgba(76, 76, 76, 1) 0%, rgba(102, 102, 102, 1) 0%, rgba(102, 102, 102, 1) 0%, rgba(89, 89, 89, 0.97) 12%, rgba(17, 17, 17, 0.86) 54%, rgba(43, 43, 43, 0.8) 76%, rgba(44, 44, 44, 0.79) 82%, rgba(28, 28, 28, 0.76) 91%, rgba(19, 19, 19, 0.74) 100%);
+  background: -moz-linear-gradient(to top, rgba(76, 76, 76, 1) 0%, rgba(102, 102, 102, 1) 0%, rgba(102, 102, 102, 1) 0%, rgba(89, 89, 89, 0.97) 12%, rgba(17, 17, 17, 0.86) 54%, rgba(43, 43, 43, 0.8) 76%, rgba(44, 44, 44, 0.79) 82%, rgba(28, 28, 28, 0.76) 91%, rgba(19, 19, 19, 0.74) 100%);
 }
 
 .titlesWrapper {

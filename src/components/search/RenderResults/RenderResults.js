@@ -14,8 +14,8 @@ class RenderResults extends React.Component {
     render() {
         return (
             <div className="renderResult">
-                {this.state.movieSearchResult.map((movie) => {
-                    return <SingleMovieBox key={movie.imdbID} movie={movie} searchValue={this.props.searchValue} />
+                {this.state.movieSearchResult.map((movie, index) => {
+                    return <SingleMovieBox key={index} movie={movie} searchValue={this.props.searchValue} />
                 })}
             </div>
         )

@@ -11,22 +11,45 @@ class MoviesList extends React.Component {
     componentDidMount() {
         this.fetchMoviesCollection()
     }
+    
+    // firebase realtime (snapshot) functions for fetching and sorting data
+    snapshotFunction = (snapshot, moviesArr) => {
+        snapshot.docs.forEach(doc => {
+            const film = doc.data()
+            film.dbId = doc.id
+            moviesArr.push(film)
+        })
+        this.setState({
+            fetchedDatabase: moviesArr
+        })
+    }
 
     fetchMoviesCollection = () => {
         const moviesArr = []
         db.collection('movies').get()
-            .then((snapshot) => {
-                snapshot.docs.forEach(doc => {
-                    const film = doc.data()
-                    film.dbId = doc.id
-                    moviesArr.push(film)
-                })
-                this.setState({
-                    fetchedDatabase: moviesArr
-                })
-            }, err => console.log(err.message));
+             .then((snapshot) => {
+            this.snapshotFunction(snapshot, moviesArr)
+            }, err => console.log(err.message)); 
+            
     }
 
+    sortByAbc = () => {
+        const moviesArr = []
+        db.collection('movies').orderBy('title').get()
+            .then((snapshot) => {
+                this.snapshotFunction(snapshot, moviesArr)
+        }, err => console.log(err.message));
+    }
+
+    sortByRating = () => {
+        const moviesArr = []
+        db.collection('movies').orderBy('imdbRate').get()
+            .then((snapshot) => {
+            this.snapshotFunction(snapshot, moviesArr)
+        }, err => console.log(err.message));
+    }
+
+    // updating data Firestore functions
     getUpdatedData = () => {
         const moviesArr = []
         db.collection('movies').get()
@@ -39,35 +62,7 @@ class MoviesList extends React.Component {
                 this.setState({
                     fetchedDatabase: moviesArr
                 })
-            })
-    }
-
-    sortByAbc = () => {
-        const moviesArr = []
-        db.collection('movies').orderBy('title').get().then((snapshot) => {
-            snapshot.docs.forEach(doc => {
-                const film = doc.data()
-                film.dbId = doc.id
-                moviesArr.push(film)
-            })
-            this.setState({
-                fetchedDatabase: moviesArr
-            })
-        }, err => console.log(err.message));
-    }
-
-    sortByRating = () => {
-        const moviesArr = []
-        db.collection('movies').orderBy('imdbRate').get().then((snapshot) => {
-            snapshot.docs.forEach(doc => {
-                const film = doc.data()
-                film.dbId = doc.id
-                moviesArr.push(film)
-            })
-            this.setState({
-                fetchedDatabase: moviesArr
-            })
-        }, err => console.log(err.message));
+            }).catch(err => console.log(err.message))
     }
 
     deleteItem = (e) => {
@@ -89,7 +84,6 @@ class MoviesList extends React.Component {
 
     render() {
         console.log(this.state.fetchedDatabase)
-        const dbCollection = this.state.fetchedDatabase
         return (
             <div className="watchlist p1 flex flexCenter" id="mylist">
                 <h1>My List</h1>
@@ -99,7 +93,7 @@ class MoviesList extends React.Component {
                         <button onClick={this.sortByRating} className="btnSort radius">Sort by IMDB rating</button>
                     </div>
                     <ul className="list flex flexCenter">
-                        {dbCollection.map((movie) => (
+                        {this.state.fetchedDatabase.map((movie) => (
                             <li key={movie.dbId} id={movie.dbId} className="grid listItem">
                                 <div className="titlesWrapper flex flexCenter">
                                     <h3>{movie.title}</h3>
