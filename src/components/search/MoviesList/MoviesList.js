@@ -1,6 +1,9 @@
 import React from 'react';
 import { db } from './../../../Firebase.js'
 import './MoviesList.css'
+import { HashLink } from 'react-router-hash-link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHandPointUp } from '@fortawesome/free-solid-svg-icons'
 
 class MoviesList extends React.Component {
 
@@ -11,7 +14,7 @@ class MoviesList extends React.Component {
     componentDidMount() {
         this.fetchMoviesCollection()
     }
-    
+
     // firebase realtime (snapshot) functions for fetching and sorting data
     snapshotFunction = (snapshot, moviesArr) => {
         snapshot.docs.forEach(doc => {
@@ -27,10 +30,10 @@ class MoviesList extends React.Component {
     fetchMoviesCollection = () => {
         const moviesArr = []
         db.collection('movies').get()
-             .then((snapshot) => {
-            this.snapshotFunction(snapshot, moviesArr)
-            }, err => console.log(err.message)); 
-            
+            .then((snapshot) => {
+                this.snapshotFunction(snapshot, moviesArr)
+            }, err => console.log(err.message));
+
     }
 
     sortByAbc = () => {
@@ -38,15 +41,15 @@ class MoviesList extends React.Component {
         db.collection('movies').orderBy('title').get()
             .then((snapshot) => {
                 this.snapshotFunction(snapshot, moviesArr)
-        }, err => console.log(err.message));
+            }, err => console.log(err.message));
     }
 
     sortByRating = () => {
         const moviesArr = []
         db.collection('movies').orderBy('imdbRate').get()
             .then((snapshot) => {
-            this.snapshotFunction(snapshot, moviesArr)
-        }, err => console.log(err.message));
+                this.snapshotFunction(snapshot, moviesArr)
+            }, err => console.log(err.message));
     }
 
     // updating data Firestore functions
@@ -86,7 +89,7 @@ class MoviesList extends React.Component {
         console.log(this.state.fetchedDatabase)
         return (
             <div className="watchlist p1 flex flexCenter" id="mylist">
-                <h1>My List</h1>
+                <h1 id="watchlist">Watchlist</h1>
                 <div className="listContainer">
                     <div className="buttons flex flexCenter">
                         <button onClick={this.sortByAbc} className="btnSort radius">Sort A-Z</button>
@@ -116,6 +119,11 @@ class MoviesList extends React.Component {
                                 </div>
                             </li>
                         ))}
+                        <HashLink
+                            to="#watchlist"
+                            scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'end' })}
+                            className="topLink hash radius">Back To Top &nbsp; <FontAwesomeIcon icon={faHandPointUp} className="handIcon" />
+                        </HashLink >
                     </ul>
                 </div>
             </div>

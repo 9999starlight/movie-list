@@ -2,9 +2,11 @@ import React from 'react';
 import Loader from '../../layout/Loader';
 import axios from 'axios'
 //import { Link } from 'react-router-dom';
-//import { HashLink } from 'react-router-hash-link';
+import { HashLink } from 'react-router-hash-link';
 import { db } from '../../../Firebase.js'
 import './MovieDetails.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHandPointUp } from '@fortawesome/free-solid-svg-icons'
 
 class MovieDetails extends React.Component {
     state = {
@@ -85,10 +87,11 @@ class MovieDetails extends React.Component {
                             <h3>IMDB Rating: {this.state.singleMovieDetails.imdbRating}</h3>
                             <button className="btn addMovieBtn radius" onClick={this.addMovieToList}>
                                 Add to watchlist</button>
-                            {/* <HashLink 
-                            to="/#startSearch"
-                            scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'end' })}
-                        >Back To Top</HashLink > */}
+                            <HashLink
+                                to="/#nav"
+                                scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'end' })}
+                                className="topLink">Back To Top &nbsp; <FontAwesomeIcon icon={faHandPointUp} className="handIcon" /></HashLink >
+
                         </div>
                     </div>
                     <div className="otherDetails flex">

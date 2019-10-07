@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './Header.css'
 function Header() {
     return (
-        <header className="flex p1">
+        <header className="flex p1" id="nav">
             <h4>Movie List</h4>
             <nav className="flexCenter">
                 <ul className="navUl flex">

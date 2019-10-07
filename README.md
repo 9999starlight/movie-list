@@ -1,6 +1,6 @@
 MOVIE LIST 
 
-Application for searching and storing movies, tv shows or games info in list. Responsive design (flexbox & grid) alows appropriate display for all devices like mobiles, tablets, monitors.
+Application for searching and storing movies, tv shows or games info in the list. Responsive design (flexbox & grid) alows appropriate display for all devices like mobiles, tablets, monitors.
 
 Front end - React js, CSS3
 
@@ -8,7 +8,7 @@ Database - Firebase Firestore realtime database - https://firebase.google.com/ -
 
 Application description
 
-Search alows user to browse for movies, tv shows or games by title or keyword typed in search field. Fetching data from movie database OMDB API http://www.omdbapi.com/ - free plan is limited with 1,000 daily requests. OMDB allows "search" paramether which displays 10 movies max, with basic info. When user clicks on ‘more details' inside single result box, search is by "id" paramether which alows user to see detailed info (actors, plot, etc) for selected movie.
+Search alows user to browse for movies, tv shows or games by title or keyword typed in search field. Fetching data from movie database OMDB API http://www.omdbapi.com/ - free plan is limited with 1,000 daily requests. OMDB allows "search" paramether which displays 10 movies max, with basic info. When user clicks on ‘more details' inside single result box, search is by "id" paramether which alows user to see detailed info (actors, plot, etc) for selected movie. Click on button 'Add to watchlist' stores the item if it's not already added on the list.
 
 Firebase Firestore methods - Firebase Firestore method ‘db.collection('movies').onSnapshot()’ immediately updates and displays database movie collection. List can be sorted alfabetically or by IMDB rating. After clicking on 'Add to favorites' button yellow star appears in the movie box to mark movie as favorite and after that button is disabled. After clicking on 'Delete' button item is deleted from database.
 

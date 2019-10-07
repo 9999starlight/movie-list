@@ -38,6 +38,11 @@
   color: #fff;
 }
 
+.handIcon {
+  display: inline-block;
+  font-size: 1rem;
+}
+
 @media(min-width: 768px) {
   .info-poster {
     display: flex;

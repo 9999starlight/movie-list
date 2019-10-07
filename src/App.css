@@ -76,3 +76,13 @@ a {
 li {
   color: #fff;
 }
+
+.topLink {
+  text-shadow: 2px 2px 4px #000;
+  padding: 0.7rem 0;
+  color: rgba(155, 243, 243, 0.925);
+}
+
+.topLink:hover {
+  filter: brightness(30%);
+}

@@ -1,7 +1,6 @@
 import React from 'react'
 import MovieDetails from '../MovieDetails/MovieDetails'
 import './SingleMovieBox.css'
-// import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons'
 
@@ -20,9 +19,7 @@ class SingleMovieBox extends React.Component {
         return (
             <div className="movieBoxWrapper">
                 <div className="movieBox p1 grid radius">
-                    {(this.props.movie.Poster === "N/A") ? <img src="./../../../assets/noimage.jpg" alt="film poster" className="block smallImage shadow" /> :
-                        <img src={this.props.movie.Poster} alt="film poster" className="block smallImage shadow" />
-                    }
+                    <img src={this.props.movie.Poster} alt="film poster" className="block smallImage shadow" />
                     <div className="movieInfo flex">
                         <p className="movieTitle">{this.props.movie.Title}</p>
                         <p className="movieYear">Year: {this.props.movie.Year}</p>
