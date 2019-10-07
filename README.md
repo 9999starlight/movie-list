@@ -1,16 +1,16 @@
 MOVIE LIST 
 
-Application for searching and storing movies, tv shows or games info in the list. Responsive design (flexbox & grid) alows appropriate display for all devices like mobiles, tablets, monitors.
+Application for searching and storing movies, tv shows or games info in the list. 
 
-Front end - React js, CSS3
+Front end - React js, CSS3. Responsive design - flexbox & grid
 
-Database - Firebase Firestore realtime database - https://firebase.google.com/ - free plan limited to 1gb total stored data, simultaneous connections 100, 10gb/month bandwidth, document writes 20K/day, document reads 50k/day, document deletes 20k/day.
+Database - Cloud Firestore, realtime database - https://firebase.google.com/docs/firestore - free plan limited to 1gb total stored data, simultaneous connections 100, 10gb/month bandwidth, document writes 20K/day, document reads 50k/day, document deletes 20k/day.
 
 Application description
 
-Search alows user to browse for movies, tv shows or games by title or keyword typed in search field. Fetching data from movie database OMDB API http://www.omdbapi.com/ - free plan is limited with 1,000 daily requests. OMDB allows "search" paramether which displays 10 movies max, with basic info. When user clicks on ‘more details' inside single result box, search is by "id" paramether which alows user to see detailed info (actors, plot, etc) for selected movie. Click on button 'Add to watchlist' stores the item if it's not already added on the list.
+Search alows user to browse for movies, tv shows or games by title or keyword via typing in search field. Search is triggered by keyup event. Fetching data from movie database OMDB API http://www.omdbapi.com/ - free plan is limited with 1,000 daily requests. OMDB provides "search" paramether which displays 10 movies max, with basic info. When user clicks on ‘more details' inside single result box, search is by "id" paramether which alows user to see detailed info (actors, plot, etc) for selected movie. Click on button 'Add to watchlist' stores the item if it's not already added on the list.
 
-Firebase Firestore methods - Firebase Firestore method ‘db.collection('movies').onSnapshot()’ immediately updates and displays database movie collection. List can be sorted alfabetically or by IMDB rating. After clicking on 'Add to favorites' button yellow star appears in the movie box to mark movie as favorite and after that button is disabled. After clicking on 'Delete' button item is deleted from database.
+Firebase Firestore methods - Firebase Firestore method ‘db.collection('movies').onSnapshot()’ immediately updates and displays database movie collection. List can be sorted alfabetically or by IMDB rating. After clicking on 'Add to favorites' button yellow star appears in the movie box to mark movie as favorite and after that button is disabled. After clicking on 'Delete' button item is removed from database.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

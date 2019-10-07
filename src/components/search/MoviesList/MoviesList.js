@@ -33,7 +33,6 @@ class MoviesList extends React.Component {
             .then((snapshot) => {
                 this.snapshotFunction(snapshot, moviesArr)
             }, err => console.log(err.message));
-
     }
 
     sortByAbc = () => {
@@ -52,7 +51,7 @@ class MoviesList extends React.Component {
             }, err => console.log(err.message));
     }
 
-    // updating data Firestore functions
+    // updating data Firebase Firestore functions
     getUpdatedData = () => {
         const moviesArr = []
         db.collection('movies').get()
@@ -86,7 +85,7 @@ class MoviesList extends React.Component {
     }
 
     render() {
-        console.log(this.state.fetchedDatabase)
+        // console.log(this.state.fetchedDatabase)
         return (
             <div className="watchlist p1 flex flexCenter" id="mylist">
                 <h1 id="watchlist">Watchlist</h1>

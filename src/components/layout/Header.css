@@ -28,7 +28,7 @@ nav {
 }
 
 .navUl li:hover {
-  filter: brightness(150%);
+  filter: brightness(50%);
   text-shadow: 2px 2px 4px #000;
 }
 

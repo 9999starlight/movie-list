@@ -10,6 +10,7 @@ class SearchContainer extends React.Component {
     loading: false,
     dataResponse: true
   }
+
   showLoader() {
     this.setState({ loading: true })
   }
@@ -24,7 +25,6 @@ class SearchContainer extends React.Component {
       .then(res => {
         this.hideloader()
         if (res.data.Response !== "False") {
-          console.log(res.data)
           this.setState({ movieSearchResult: res.data.Search, dataResponse: true })
         } else {
           this.setState({ dataResponse: false })
@@ -39,7 +39,7 @@ class SearchContainer extends React.Component {
       <div className="p1" id="startSearch">
         <SearchInput getMovies={this.getMovies} />
         {(this.state.loading) ? <Loader /> : null}
-        {this.state.dataResponse ? <RenderResults movieSearchResult={this.state.movieSearchResult} searchValue={this.state.searchValue} /> : <div>Movie not found!</div>}
+        {this.state.dataResponse ? <RenderResults movieSearchResult={this.state.movieSearchResult} searchValue={this.state.searchValue} /> : <div><h3>Searching for title or movie not found!</h3></div>}
       </div>
     )
   }

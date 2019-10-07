@@ -1,14 +1,9 @@
-/* .detailsContainer {
-  box-shadow: 3px 3px 6px rgba(150, 151, 152, 0.47);
-} */
-
 .biggerImage {
   height: 200px;
   margin: 0.3rem auto;
   padding: 0.8rem;
   max-width: 100%;
 }
-
 
 .singleMovie {
   padding: 0.8rem;
