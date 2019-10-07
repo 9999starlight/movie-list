@@ -102,11 +102,11 @@ h1 {
 
 .addFav {
   border: 1px solid rgb(21, 201, 15);
-  background: linear-gradient(to bottom, rgb(43, 181, 142) 0%, rgb(7, 84, 57) 52%, rgb(8, 86, 61) 54%, rgb(13, 105, 66) 70%, rgb(43, 181, 132) 100%);
+  background: linear-gradient(to bottom, rgba(43, 181, 142, 0.836) 0%, rgba(7, 84, 57, 0.808) 52%, rgba(8, 86, 61, 0.808) 54%, rgba(13, 105, 67, 0.836) 70%, rgba(43, 181, 133, 0.849) 100%);
 }
 
 .addFav:disabled {
-  opacity: 0.2;
+  opacity: 0.1;
 }
 
 .star {
@@ -120,7 +120,7 @@ h1 {
 }
 
 .delete {
-  background: linear-gradient(to bottom, rgb(181, 43, 43) 0%, rgb(84, 12, 7) 52%, rgb(86, 17, 8) 54%, rgb(105, 19, 13) 70%, rgb(181, 43, 43) 100%);
+  background: linear-gradient(to bottom, rgba(181, 43, 43, 0.774) 0%, rgba(84, 12, 7, 0.829) 52%, rgba(86, 17, 8, 0.801) 54%, rgba(105, 19, 13, 0.801) 70%, rgba(181, 43, 43, 0.788) 100%);
   margin-top: 1.7rem;
 }
 
