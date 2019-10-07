@@ -32,7 +32,7 @@ class MovieDetails extends React.Component {
 
     getMovieDetails = () => {
         this.showLoader()
-        axios.get(`http://www.omdbapi.com/?i=${Object.values(this.props).join('')}&apikey=a56835b9`)
+        axios.get(`https://www.omdbapi.com/?i=${Object.values(this.props).join('')}&apikey=a56835b9`)
             .then(res => {
                 if (res.data.Response !== "False") {
                     this.hideloader()
