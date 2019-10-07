@@ -21,7 +21,7 @@ class SearchContainer extends React.Component {
 
   getMovies = (searchValue) => {
     this.showLoader()
-    axios.get(`http://www.omdbapi.com/?s=${searchValue}&apikey=a56835b9`)
+    axios.get(`https://www.omdbapi.com/?s=${searchValue}&apikey=a56835b9`)
       .then(res => {
         this.hideloader()
         if (res.data.Response !== "False") {
