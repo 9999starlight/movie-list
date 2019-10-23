@@ -18,9 +18,11 @@ class SearchInput extends React.Component {
             <div className="searchBox flex flexCenter p1" >
                 <div className="search" >
                     <h1 className="mb1">Search for movies or tv shows</h1>
-                    <h3 className="mb1">Add movies to watchlist and mark your favorites</h3>
+                    <h3 className="mb1">Login to add movies to your watchlist and mark favorites</h3>
                     <div className="flexCenter">
-                        <input type="text" id="search" className="radius mb1 searchArea shadow"
+                        <input type="text"
+                            id="search"
+                            className="radius mb1 searchArea shadow"
                             value={this.state.searchValue}
                             onChange={this.onChange}
                             autoFocus

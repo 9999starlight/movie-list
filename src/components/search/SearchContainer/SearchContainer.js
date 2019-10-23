@@ -39,7 +39,8 @@ class SearchContainer extends React.Component {
       <div className="p1" id="startSearch">
         <SearchInput getMovies={this.getMovies} />
         {(this.state.loading) ? <Loader /> : null}
-        {this.state.dataResponse ? <RenderResults movieSearchResult={this.state.movieSearchResult} searchValue={this.state.searchValue} /> : <div><h3>Searching for title or movie not found!</h3></div>}
+        {this.state.dataResponse ? <RenderResults movieSearchResult={this.state.movieSearchResult}
+          user={this.props.user} searchValue={this.state.searchValue} /> : <div><h3>Searching for title or not found!</h3></div>}
       </div>
     )
   }

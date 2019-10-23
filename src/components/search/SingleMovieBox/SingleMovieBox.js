@@ -27,7 +27,7 @@ class SingleMovieBox extends React.Component {
                     </div>
                     <div onClick={this.toggle} className="btnDetailsWrapper flex flexCenter"><p className="detailsText">More details</p><p className="arrow"><FontAwesomeIcon icon={faAngleDoubleDown} /></p></div>
                 </div>
-                {this.state.on && <MovieDetails {...this.props.movie.imdbID} />}
+                {this.state.on && <MovieDetails movieId={this.props.movie.imdbID} user={this.props.user} />}
             </div>
         )
     }

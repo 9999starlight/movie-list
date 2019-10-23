@@ -32,7 +32,7 @@ class MovieDetails extends React.Component {
 
     getMovieDetails = () => {
         this.showLoader()
-        axios.get(`https://www.omdbapi.com/?i=${Object.values(this.props).join('')}&apikey=a56835b9`)
+        axios.get(`https://www.omdbapi.com/?i=${this.props.movieId}&apikey=a56835b9`)
             .then(res => {
                 if (res.data.Response !== "False") {
                     this.hideloader()
@@ -47,7 +47,10 @@ class MovieDetails extends React.Component {
 
     // check if item already exists; addMovie to Firebase movies collection
     addMovieToList = () => {
-        db.collection('movies').where('movieId', '==', this.state.singleMovieDetails.imdbID).get()
+        db.collection('movies')
+            .where('movieId', '==', this.state.singleMovieDetails.imdbID)
+            .where("userUid", "==", this.props.user.uid)
+            .get()
             .then(snapshot => {
                 if (snapshot.docs.length) {
                     alert('You have already added that item to the list!')
@@ -55,13 +58,14 @@ class MovieDetails extends React.Component {
                     db.collection('movies').add({
                         favorite: false,
                         genre: this.state.singleMovieDetails.Genre,
-                        imdbLink: `https://www.imdb.com/title/${Object.values(this.props).join('')}`,
+                        imdbLink: `https://www.imdb.com/title/${this.props.movieId}`,
                         imdbRate: this.state.singleMovieDetails.imdbRating,
                         movieId: this.state.singleMovieDetails.imdbID,
                         title: this.state.singleMovieDetails.Title,
                         type: this.state.singleMovieDetails.Type,
                         year: this.state.singleMovieDetails.Year,
-                        image: this.state.singleMovieDetails.Poster
+                        image: this.state.singleMovieDetails.Poster,
+                        userUid: this.props.user.uid
                     })
                     alert(`Added to your list`);
                 }
@@ -85,8 +89,9 @@ class MovieDetails extends React.Component {
                                 <h3>Type: {this.state.singleMovieDetails.Type}</h3>
                                 <h3>Genre: {this.state.singleMovieDetails.Genre}</h3>
                                 <h3>IMDB Rating: {this.state.singleMovieDetails.imdbRating}</h3>
-                                <button className="btn addMovieBtn radius" onClick={this.addMovieToList}>
+                                <button className="btn addMovieBtn radius" onClick={this.addMovieToList} disabled={!this.props.user}>
                                     Add to watchlist</button>
+                                {!this.props.user ? <p className="loginInfo">Login to add to your watchlist</p> : null}
                                 <HashLink
                                     to="/#nav"
                                     scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'end' })}

@@ -83,6 +83,25 @@ li {
   color: rgba(155, 243, 243, 0.925);
 }
 
+.error {
+  color: crimson;
+  background-color: lightgray;
+}
+
 .topLink:hover {
   filter: brightness(30%);
+}
+
+button:disabled {
+  opacity: 0.1;
+}
+
+.overlay {
+  width: 100%;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 2;
+  background: linear-gradient(120deg, #a08ab8a8 0%, #7bc7c3a2 25%, #80addca1 50%, #a27ec7a1 75%, #b277a5a2 100%);
 }

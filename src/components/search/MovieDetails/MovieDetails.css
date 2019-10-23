@@ -33,6 +33,10 @@
   color: #fff;
 }
 
+.loginInfo {
+  color: crimson;
+}
+
 .handIcon {
   display: inline-block;
   font-size: 1rem;

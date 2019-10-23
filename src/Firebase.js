@@ -1,6 +1,6 @@
 import app from 'firebase/app';
 import 'firebase/firestore';
-
+import 'firebase/auth';
 const firebaseConfig = {
   apiKey: "AIzaSyAmjtwJhPPoQjHg-o_EjC-aiSCtmGzJtzQ",
   authDomain: "movie-list-3d942.firebaseapp.com",
@@ -14,5 +14,5 @@ const firebaseConfig = {
 
 app.initializeApp(firebaseConfig);
 const db = app.firestore();
-
-export { db };
+const auth = app.auth();
+export { db, auth };
