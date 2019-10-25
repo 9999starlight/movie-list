@@ -11,19 +11,15 @@ class SearchContainer extends React.Component {
     dataResponse: true
   }
 
-  showLoader() {
-    this.setState({ loading: true })
-  }
-
-  hideloader() {
-    this.setState({ loading: false })
+  toggleLoader() {
+    this.setState({ loading: !this.state.loading })
   }
 
   getMovies = (searchValue) => {
-    this.showLoader()
+    this.toggleLoader()
     axios.get(`https://www.omdbapi.com/?s=${searchValue}&apikey=a56835b9`)
       .then(res => {
-        this.hideloader()
+        this.toggleLoader()
         if (res.data.Response !== "False") {
           this.setState({ movieSearchResult: res.data.Search, dataResponse: true })
         } else {

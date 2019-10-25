@@ -11,14 +11,20 @@ class MovieDetails extends React.Component {
     state = {
         singleMovieDetails: [],
         loading: false,
-        dataResponse: true
-    }
-    showLoader() {
-        this.setState({ loading: true })
+        dataResponse: true,
+        message: null
     }
 
-    hideloader() {
-        this.setState({ loading: false })
+    toggleLoader() {
+        this.setState({ loading: !this.state.loading })
+    }
+
+    messageTimeout = () => {
+        setTimeout(() => {
+            this.setState({
+                message: null
+            });
+        }, 4000);
     }
 
     componentDidMount() {
@@ -31,11 +37,11 @@ class MovieDetails extends React.Component {
     }
 
     getMovieDetails = () => {
-        this.showLoader()
+        this.toggleLoader()
         axios.get(`https://www.omdbapi.com/?i=${this.props.movieId}&apikey=a56835b9`)
             .then(res => {
                 if (res.data.Response !== "False") {
-                    this.hideloader()
+                    this.toggleLoader()
                     this.setState({ singleMovieDetails: res.data, dataResponse: true })
                 } else {
                     this.setState({ dataResponse: false })
@@ -53,7 +59,8 @@ class MovieDetails extends React.Component {
             .get()
             .then(snapshot => {
                 if (snapshot.docs.length) {
-                    alert('You have already added that item to the list!')
+                    this.setState({ message: 'You have already added that item to the list!' })
+                    this.messageTimeout()
                 } else {
                     db.collection('movies').add({
                         favorite: false,
@@ -67,7 +74,8 @@ class MovieDetails extends React.Component {
                         image: this.state.singleMovieDetails.Poster,
                         userUid: this.props.user.uid
                     })
-                    alert(`Added to your list`);
+                    this.setState({ message: 'Added to your list' })
+                    this.messageTimeout()
                 }
             }).catch((err) => {
                 console.log(err.message);
@@ -81,17 +89,31 @@ class MovieDetails extends React.Component {
                 {this.state.dataResponse ?
                     <div className="film">
                         <div className="info-poster radius">
-                            <a href={this.state.singleMovieDetails.Poster} rel="noopener noreferrer" target="_blank">
-                                <img src={this.state.singleMovieDetails.Poster} alt="film poster" className="block biggerImage" /></a>
+                            <div className="flex flexCenter">
+                                <a href={this.state.singleMovieDetails.Poster}
+                                    rel="noopener noreferrer" target="_blank">
+                                    <img src={this.state.singleMovieDetails.Poster}
+                                        alt="film poster" className="block biggerImage" />
+                                </a>
+                            </div>
                             <div className="singleMovie">
                                 <h2>{this.state.singleMovieDetails.Title}</h2>
                                 <h3>Year: {this.state.singleMovieDetails.Year}</h3>
                                 <h3>Type: {this.state.singleMovieDetails.Type}</h3>
                                 <h3>Genre: {this.state.singleMovieDetails.Genre}</h3>
                                 <h3>IMDB Rating: {this.state.singleMovieDetails.imdbRating}</h3>
-                                <button className="btn addMovieBtn radius" onClick={this.addMovieToList} disabled={!this.props.user}>
+                                <button className="btn addMovieBtn radius"
+                                    onClick={this.addMovieToList}
+                                    disabled={!this.props.user}>
                                     Add to watchlist</button>
-                                {!this.props.user ? <p className="loginInfo">Login to add to your watchlist</p> : null}
+                                <div className="messageWrapper">
+                                    {this.state.message ?
+                                        <p className="message">{this.state.message}</p>
+                                        : null}
+                                </div>
+                                {!this.props.user ?
+                                    <p className="loginInfo">Login to add to your watchlist</p>
+                                    : null}
                                 <HashLink
                                     to="/#nav"
                                     scroll={el => el.scrollIntoView({ behavior: 'smooth', block: 'end' })}

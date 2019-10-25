@@ -23,7 +23,8 @@
 .signUpQuestion,
 .formInput,
 .submitLogin,
-.submitSignup {
+.submitSignup,
+.errorContainer {
   margin-bottom: 1.2rem;
 }
 
@@ -40,7 +41,8 @@ label {
 
 .formInput,
 .submitLogin,
-.submitSignup {
+.submitSignup,
+.errorContainer {
   padding: 0.5rem;
   width: 240px;
 }
@@ -49,7 +51,6 @@ label {
 .submitSignup {
   cursor: pointer;
   color: white;
-  margin-top: 0.8rem;
 }
 
 .registerBtn {
@@ -79,6 +80,11 @@ label {
   cursor: pointer;
 }
 
+.errorContainer {
+  height: 30px;
+  align-self: center;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;
@@ -96,7 +102,8 @@ label {
 
   .formInput,
   .submitLogin,
-  .submitSignup {
+  .submitSignup,
+  .errorContainer {
     width: 300px;
   }
 }

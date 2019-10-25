@@ -12,12 +12,8 @@ class MoviesList extends React.Component {
         loading: false,
     }
 
-    showLoader() {
-        this.setState({ loading: true })
-    }
-
-    hideloader() {
-        this.setState({ loading: false })
+    toggleLoader() {
+        this.setState({ loading: !this.state.loading })
     }
 
     componentDidMount() {
@@ -37,14 +33,14 @@ class MoviesList extends React.Component {
     }
 
     fetchMoviesCollection = () => {
-        this.showLoader()
+        this.toggleLoader()
         if (this.props.user) {
             const moviesArr = []
             db.collection('movies')
                 .where('userUid', '==', this.props.user.uid)
                 .get()
                 .then((snapshot) => {
-                    this.hideloader()
+                    this.toggleLoader()
                     this.snapshotFunction(snapshot, moviesArr)
                 }, err => console.log(err.message));
         }

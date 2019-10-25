@@ -84,8 +84,8 @@ li {
 }
 
 .error {
-  color: crimson;
-  background-color: lightgray;
+  color: #fff;
+  background-color: crimson;
 }
 
 .topLink:hover {

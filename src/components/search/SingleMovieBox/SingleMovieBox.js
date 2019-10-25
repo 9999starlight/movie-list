@@ -16,6 +16,7 @@ class SingleMovieBox extends React.Component {
     }
 
     render() {
+        console.log(this.props.movie.Poster)
         return (
             <div className="movieBoxWrapper">
                 <div className="movieBox p1 grid radius">
