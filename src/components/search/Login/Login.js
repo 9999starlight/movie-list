@@ -8,7 +8,12 @@ class Login extends React.Component {
     state = {
         email: '',
         password: '',
-        errorMessage: ''
+        errorMessage: '',
+        registerForm: false
+    }
+
+    toggleRegister = () => {
+        this.setState({ registerForm: !this.state.registerForm })
     }
 
     handleChange = (e) => {
@@ -51,35 +56,49 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="login flex flexCenter shadow">
-                <FontAwesomeIcon icon={faWindowClose}
-                    className="loginX"
-                    onClick={this.props.showForm} />
-                <h2 className="formHeading">Login/Signup</h2>
-                <span className="block formSpan">Login or Create account</span>
-                <form className="login-form flex flexCenter p1">
-                    <label htmlFor="login-email" className="block">Email</label>
-                    <input type="email"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                        className="block formInput radius"
-                        placeholder="Enter your email"
-                        required />
-                    <label htmlFor="login-password" className="block">Password</label>
-                    <input type="password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        name="password"
-                        className="block formInput radius"
-                        placeholder="Enter your password"
-                        minLength="6"
-                        required />
-                    <p className="error">{this.state.errorMessage}</p>
-                    <button type="submit" onClick={this.login} className="submitLogin btn radius">Login</button>
-                    <button type="submit" onClick={this.createNewAccount} className="submitSignup btn radius">Create account</button>
-                </form>
-            </div>
+                <div className="login flex flexCenter radius shadow">
+                    <FontAwesomeIcon icon={faWindowClose}
+                        className="loginX"
+                        onClick={this.props.showForm} />
+                    <h2 className="formHeading">{!this.state.registerForm ? "Login" : "Sign Up"}</h2>
+                    {!this.state.registerForm ?
+                        <p className="signUpQuestion">Don't have an account?
+                        <button className="registerBtn"
+                                onClick={this.toggleRegister}>Sign Up</button>
+                        </p> : null}
+                    <form className="login-form flex flexCenter p1">
+                        <label htmlFor="login-email" className="block">Email</label>
+                        <input type="email"
+                            name="email"
+                            value={this.state.email}
+                            onChange={this.handleChange}
+                            className="block formInput radius"
+                            placeholder="Enter your email"
+                            required />
+                        <label htmlFor="login-password" className="block">Password</label>
+                        <input type="password"
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                            name="password"
+                            className="block formInput radius"
+                            placeholder="Enter your password"
+                            minLength="6"
+                            required />
+                        <p className="error">{this.state.errorMessage}</p>
+                        {!this.state.registerForm ?
+                            <button type="submit"
+                                onClick={this.login}
+                                className="submitLogin btn radius">Login</button>
+                            : null
+                        }
+                        {this.state.registerForm ?
+                            <button type="submit"
+                                onClick={this.createNewAccount}
+                                className="submitSignup btn radius">Create account</button>
+                            : null
+                        }
+                    </form>
+                </div>
         )
     }
 }

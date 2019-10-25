@@ -16,7 +16,7 @@ nav {
   animation: shine 20s infinite;
 }
 
-nav h4 {
+.logo {
   font-family: 'Monoton', cursive;
   background: radial-gradient(circle at 50% 120%, #d481f6, #cb76ef 10%, #9936d6 80%, #b12dda 100%);
   background-clip: text;

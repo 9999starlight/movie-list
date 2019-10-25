@@ -26,6 +26,7 @@ class App extends React.Component {
       }
       else {
         this.setState({ user: null })
+        localStorage.removeItem('user')
       }
     });
   }

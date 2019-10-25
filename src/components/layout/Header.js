@@ -20,7 +20,7 @@ class Header extends React.Component {
         return (
             <header className="flex" id="nav">
                 <nav className="flex">
-                    <h4>Movie List</h4>
+                    <h4 className="logo">Movie List</h4>
                     <ul className="navUl flex">
                         <li>
                             <Link to="/">Search</Link>

@@ -1,5 +1,5 @@
 .login {
-  width: 95vw;
+  width: 100%;
   border: 2px inset rgb(172, 169, 169);
   margin: 0 auto;
   left: 50%;
@@ -10,6 +10,8 @@
   z-index: 3;
   animation-name: fadein;
   animation-duration: 1s;
+  overflow: auto;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.801);
 }
 
 .login,
@@ -18,7 +20,10 @@
 }
 
 .formHeading,
-.formInput {
+.signUpQuestion,
+.formInput,
+.submitLogin,
+.submitSignup {
   margin-bottom: 1.2rem;
 }
 
@@ -45,6 +50,16 @@ label {
   cursor: pointer;
   color: white;
   margin-top: 0.8rem;
+}
+
+.registerBtn {
+  background: transparent;
+  text-decoration: underline;
+  font-size: 1rem;
+  color: rgb(7, 246, 250);
+  filter: brightness(200%);
+  cursor: pointer;
+  padding: 0 0.7rem;
 }
 
 .submitLogin {
@@ -79,11 +94,37 @@ label {
     width: 400px;
   }
 
-  .formInput {
+  .formInput,
+  .submitLogin,
+  .submitSignup {
     width: 300px;
   }
+}
 
-  .loginX:hover {
+@media(min-width: 768px) {
+  .login {
+    width: 400px;
+    height: 500px;
+    justify-content: space-evenly;
+  }
+
+  .login-form {
+    height: 60%;
+    justify-content: space-around;
+  }
+
+  label {
+    margin: 0;
+  }
+
+  .loginX {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+  }
+
+  .loginX:hover,
+  .registerBtn:hover {
     filter: brightness(50%);
     transition: ease-in-out;
   }
