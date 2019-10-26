@@ -36,6 +36,7 @@ class MovieDetails extends React.Component {
             this.setState({ singleMovieDetails: this.props.singleMovieDetails })
     }
 
+    // get request, serach by movie id
     getMovieDetails = () => {
         this.toggleLoader()
         axios.get(`https://www.omdbapi.com/?i=${this.props.movieId}&apikey=a56835b9`)
@@ -59,7 +60,7 @@ class MovieDetails extends React.Component {
             .get()
             .then(snapshot => {
                 if (snapshot.docs.length) {
-                    this.setState({ message: 'You have already added that item to the list!' })
+                    this.setState({ message: 'You have already added that item to your list!' })
                     this.messageTimeout()
                 } else {
                     db.collection('movies').add({
@@ -91,9 +92,14 @@ class MovieDetails extends React.Component {
                         <div className="info-poster radius">
                             <div className="flex flexCenter">
                                 <a href={this.state.singleMovieDetails.Poster}
-                                    rel="noopener noreferrer" target="_blank">
-                                    <img src={this.state.singleMovieDetails.Poster}
-                                        alt="film poster" className="block biggerImage" />
+                                    rel="noopener noreferrer"
+                                    target="_blank">
+                                    <img
+                                        src={this.state.singleMovieDetails.Poster === 'N/A' ?
+                                            require('./../../../assets/noimage.jpg')
+                                            : this.state.singleMovieDetails.Poster}
+                                        alt="film poster"
+                                        className="block biggerImage" />
                                 </a>
                             </div>
                             <div className="singleMovie">

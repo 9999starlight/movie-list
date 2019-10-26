@@ -10,7 +10,6 @@ class Login extends React.Component {
         password: '',
         errorMessage: '',
         registerForm: false
-        /* validationMessage: null */
     }
 
     messageTimeout = () => {
@@ -33,7 +32,7 @@ class Login extends React.Component {
         e.preventDefault();
         const regEmail = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/;
         if (!regEmail.test(this.state.email) || this.state.password.length < 6) {
-            this.setState({ errorMessage: `You haven't entered valid e-mail or password, please try again!` })
+            this.setState({ errorMessage: `Invalid e-mail or password, please try again!` })
             this.messageTimeout()
             return;
         } else {
@@ -52,7 +51,7 @@ class Login extends React.Component {
         e.preventDefault();
         const regEmail = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/;
         if (!regEmail.test(this.state.email) || this.state.password.length < 6) {
-            this.setState({ errorMessage: `You haven't entered valid e-mail or password, please try again!` })
+            this.setState({ errorMessage: `Invalid e-mail or password, please try again!` })
             this.messageTimeout()
             return;
         } else {

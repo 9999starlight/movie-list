@@ -33,22 +33,27 @@ class Header extends React.Component {
                     </ul>
                 </nav>
                 <ul className="logging flex">
-                    {!this.props.user ? <li className="loggingLi">
-                        <input type="button"
-                            onClick={() => this.props.showForm()}
-                            className="logged-out logBtn"
-                            value="Login" />
-                    </li> : null}
-                    {this.props.user ? <li className="loggingLi">
-                        <input type="button"
-                            onClick={this.logOut}
-                            value="Logout"
-                            className="logged-in logBtn" />
-                    </li> : null}
-
-                    {this.props.user ? <li className="loggingLi">
-                        <span className="account">{this.props.user.email}</span>
-                    </li> : null}
+                    {!this.props.user ?
+                        <li className="loggingLi">
+                            <input type="button"
+                                onClick={() => this.props.showForm()}
+                                className="logged-out logBtn"
+                                value="Login" />
+                        </li>
+                        : null}
+                    {this.props.user ?
+                        <li className="loggingLi">
+                            <input type="button"
+                                onClick={this.logOut}
+                                value="Logout"
+                                className="logged-in logBtn" />
+                        </li>
+                        : null}
+                    {this.props.user ?
+                        <li className="loggingLi">
+                            <span className="account">{this.props.user.email}</span>
+                        </li>
+                        : null}
                 </ul>
             </header>
         )

@@ -111,9 +111,11 @@ class MoviesList extends React.Component {
                     <div className="listContainer">
                         {(this.state.loading) ? <Loader /> : null}
                         <div className="buttons flex flexCenter">
-                            <button onClick={this.sortByAbc}
+                            <button
+                                onClick={this.sortByAbc}
                                 className="btnSort radius">Sort A-Z</button>
-                            <button onClick={this.sortByRating}
+                            <button
+                                onClick={this.sortByRating}
                                 className="btnSort radius">Sort by IMDB rating</button>
                         </div>
                         <ul className="list flex flexCenter">
@@ -127,11 +129,20 @@ class MoviesList extends React.Component {
                                         <h5>Type: {movie.type}</h5>
                                         <h5>Genre: {movie.genre}</h5>
                                     </div>
-                                    <img src={movie.image} alt="film poster"
+                                    <img
+                                        src={movie.image === 'N/A' ?
+                                        require('./../../../assets/noimage.jpg')
+                                        : movie.image}
+                                        alt="film poster"
                                         className="block listImage shadow" />
                                     <div className="imdbWrapper flex">
                                         <h4>Imdb Rating: {movie.imdbRate}</h4>
-                                        <h5><a href={movie.imdbLink} rel="noopener noreferrer" target="_blank" className="imdbLink">IMDB Link</a></h5>
+                                        <h5>
+                                            <a href={movie.imdbLink}
+                                                rel="noopener noreferrer"
+                                                target="_blank"
+                                                className="imdbLink">IMDB Link</a>
+                                        </h5>
                                         <p className={movie.favorite ? 'star yellow' : 'star'} >&#10031;</p>
                                     </div>
                                     <div className="favWrapper flex flexCenter">
@@ -152,8 +163,7 @@ class MoviesList extends React.Component {
                             </HashLink >
                         </ul>
                     </div>
-                    :
-                    <h3>Login or create account to manage your list!</h3>
+                    : <h3>Login or create account to manage your list!</h3>
                 }
             </div>
         )

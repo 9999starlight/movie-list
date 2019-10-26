@@ -28,6 +28,10 @@
   margin-bottom: 1.2rem;
 }
 
+input[type="password"] {
+  margin-bottom: 0;
+}
+
 .formSpan {
   font-size: 0.8rem;
   margin: 0.5rem;
@@ -51,6 +55,7 @@ label {
 .submitSignup {
   cursor: pointer;
   color: white;
+  margin-top: 0.5rem;
 }
 
 .registerBtn {
