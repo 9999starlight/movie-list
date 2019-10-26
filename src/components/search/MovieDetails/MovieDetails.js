@@ -20,7 +20,7 @@ class MovieDetails extends React.Component {
     }
 
     messageTimeout = () => {
-        setTimeout(() => {
+        this.timing = setTimeout(() => {
             this.setState({
                 message: null
             });
@@ -34,6 +34,10 @@ class MovieDetails extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.singleMovieDetails !== this.props.singleMovieDetails)
             this.setState({ singleMovieDetails: this.props.singleMovieDetails })
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timing)
     }
 
     // get request, serach by movie id

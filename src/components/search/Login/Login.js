@@ -13,11 +13,15 @@ class Login extends React.Component {
     }
 
     messageTimeout = () => {
-        setTimeout(() => {
+        this.timing = setTimeout(() => {
             this.setState({
                 errorMessage: null
             });
         }, 5000);
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timing);
     }
 
     toggleRegister = () => {
