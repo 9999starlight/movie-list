@@ -17,7 +17,7 @@ class Login extends React.Component {
             this.setState({
                 errorMessage: null
             });
-        }, 5000);
+        }, 3500);
     }
 
     componentWillUnmount() {
@@ -32,40 +32,48 @@ class Login extends React.Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    createNewAccount = (e) => {
-        e.preventDefault();
+    validation = () => {
         const regEmail = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/;
         if (!regEmail.test(this.state.email) || this.state.password.length < 6) {
             this.setState({ errorMessage: `Invalid e-mail or password, please try again!` })
             this.messageTimeout()
-            return;
-        } else {
+            return false;
+        } else 
+            return true
+    }
+
+    firebaseError = (err) => {
+        console.log(err.message)
+        this.setState({ errorMessage: err.message })
+        this.messageTimeout()
+    }
+
+    createNewAccount = (e) => {
+        e.preventDefault();
+        const isValid = this.validation()
+        if (!isValid)
+            return
+        else {
             auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
                 .then((cred) => {
                     this.props.showForm()
                 }).catch((err) => {
-                    console.log(err.message)
-                    this.setState({ errorMessage: err.message })
-                    this.messageTimeout()
+                    this.firebaseError(err)
                 });
         }
     }
 
     login = (e) => {
         e.preventDefault();
-        const regEmail = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/;
-        if (!regEmail.test(this.state.email) || this.state.password.length < 6) {
-            this.setState({ errorMessage: `Invalid e-mail or password, please try again!` })
-            this.messageTimeout()
-            return;
-        } else {
+        const isValid = this.validation()
+        if (!isValid)
+            return
+        else {
             auth.signInWithEmailAndPassword(this.state.email, this.state.password)
                 .then((cred) => {
                     this.props.showForm()
                 }).catch((err) => {
-                    console.log(err.message)
-                    this.setState({ errorMessage: err.message })
-                    this.messageTimeout()
+                    this.firebaseError(err)
                 });
         }
     }
