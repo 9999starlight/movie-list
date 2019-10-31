@@ -38,7 +38,7 @@ class Login extends React.Component {
             this.setState({ errorMessage: `Invalid e-mail or password, please try again!` })
             this.messageTimeout()
             return false;
-        } else 
+        } else
             return true
     }
 
@@ -80,51 +80,53 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="login flex flexCenter radius shadow">
-                <FontAwesomeIcon icon={faWindowClose}
-                    className="loginX"
-                    onClick={this.props.showForm} />
-                <h2 className="formHeading">{!this.state.registerForm ? "Login" : "Sign Up"}</h2>
-                {!this.state.registerForm ?
-                    <p className="signUpQuestion">Don't have an account?
-                        <button className="registerBtn"
-                            onClick={this.toggleRegister}>Sign Up</button>
-                    </p> : null}
-                <form className="login-form flex flexCenter p1">
-                    <label htmlFor="login-email" className="block">Email</label>
-                    <input type="email"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                        className="block formInput radius"
-                        placeholder="Enter your email"
-                        required />
-                    <label htmlFor="login-password" className="block">Password</label>
-                    <input type="password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        name="password"
-                        className="block formInput radius"
-                        placeholder="Enter your password"
-                        minLength="6"
-                        required />
-                    <div className="errorContainer">
-                        <p className="error">{this.state.errorMessage}</p>
-                    </div>
-
+            <div className="loginWrapper flex shadow radius">
+                <div className="login flex flexCenter">
+                    <FontAwesomeIcon icon={faWindowClose}
+                        className="loginX"
+                        onClick={this.props.showForm} />
+                    <h2 className="formHeading">{!this.state.registerForm ? "Login" : "Sign Up"}</h2>
                     {!this.state.registerForm ?
-                        <button type="submit"
-                            onClick={this.login}
-                            className="submitLogin btn radius">Login</button>
-                        : null
-                    }
-                    {this.state.registerForm ?
-                        <button type="submit"
-                            onClick={this.createNewAccount}
-                            className="submitSignup btn radius">Create account</button>
-                        : null
-                    }
-                </form>
+                        <p className="signUpQuestion">Don't have an account?
+                        <button className="registerBtn"
+                                onClick={this.toggleRegister}>Sign Up</button>
+                        </p> : null}
+                    <form className="login-form flex flexCenter p1">
+                        <label htmlFor="login-email" className="block">Email</label>
+                        <input type="email"
+                            name="email"
+                            value={this.state.email}
+                            onChange={this.handleChange}
+                            className="block formInput radius"
+                            placeholder="Enter your email"
+                            required />
+                        <label htmlFor="login-password" className="block">Password</label>
+                        <input type="password"
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                            name="password"
+                            className="block formInput radius"
+                            placeholder="Enter your password"
+                            minLength="6"
+                            required />
+                        <div className="errorContainer">
+                            <p className="error">{this.state.errorMessage}</p>
+                        </div>
+
+                        {!this.state.registerForm ?
+                            <button type="submit"
+                                onClick={this.login}
+                                className="submitLogin btn radius">Login</button>
+                            : null
+                        }
+                        {this.state.registerForm ?
+                            <button type="submit"
+                                onClick={this.createNewAccount}
+                                className="submitSignup btn radius">Create account</button>
+                            : null
+                        }
+                    </form>
+                </div>
             </div>
         )
     }
